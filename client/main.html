@@ -1,0 +1,39 @@
+<template name="main3">
+    <svg>
+        <g class="container">
+            {{#each tiles}}
+            <g class="row">
+                {{#each cols}}
+                {{#if tile}}
+                <rect width="25%" height="20%" class="cell white"></rect>
+                {{else}}
+                <rect width="25%" height="20%" class="cell black"></rect>
+                {{/if}}
+                {{/each}}
+            </g>
+            {{/each}}
+            <g class="row">
+                <rect width="25%" height="20%" class="cell base"></rect>
+                <rect width="25%" height="20%" class="cell base"></rect>
+                <rect width="25%" height="20%" class="cell base"></rect>
+                <rect width="25%" height="20%" class="cell base"></rect>
+            </g>
+            {{#if isReady}}
+                <g class="status">
+                    <text y="15%" x="50%" text-anchor="middle">{{steps}} Steps / {{delta}} msec</text>
+                    {{#if sDelta}}
+                        <text y="24%" x="50%" text-anchor="middle">Record: {{sDelta}}</text>
+                    {{/if}}
+                </g>
+            {{else}}
+                <g class="status">
+                    {{#with user}}
+                    <text y="15%" x="50%" text-anchor="middle">Welcome {{username}}</text>
+                    <text y="24%" x="50%" text-anchor="middle">Tap the bottom</text>
+                    <text y="33%" x="50%" text-anchor="middle">black tiles to run!</text>
+                    {{/with}}
+                </g>
+            {{/if}}
+        </g>
+    </svg>
+</template>

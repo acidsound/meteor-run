@@ -1,0 +1,68 @@
+template(name="stage")
+    +splash
+    div.container
+        each tiles
+            div.row
+                each cols
+                    if tile
+                        if die
+                            div.cell.white.die
+                        else
+                            div.cell.white
+                    else
+                        div.cell.black
+        div.row.row-base
+            div.cell.base
+            div.cell.base
+            div.cell.base
+            div.cell.base
+        if isReady
+            div.status
+                with user
+                    span.username {{username}}
+                div.steps {{steps}}
+                //- Steps / {{delta}} msec
+                //- if sDelta
+                //-     div.middle Record: {{sDelta}}
+        else
+            div.status
+                +intro
+
+    div.modal
+        //- h4 Map name (9:01)
+        .inner
+          h1 {{steps}}
+          with user
+              p.player-name {{username}}
+        if rank
+          p.rank Your rank:
+            span <b>{{rank}}</b>
+        if speed
+          p Speed {{speed}}
+
+        button.close Retry
+    div.overlay
+
+
+template(name="staged")
+    svg
+        g.container
+            each tiles
+                g.row
+                    each cols
+                        if tile
+                            rect.cell.white(width='25%' height='20%')
+                        else
+                            rect.cell.black(width='25%' height='20%')
+            g.row
+                rect.cell.base(width='25%' height='20%')
+                rect.cell.base(width='25%' height='20%')
+                rect.cell.base(width='25%' height='20%')
+                rect.cell.base(width='25%' height='20%')
+            if isReady
+                g.status
+                    text(y='15%' x='50%' text-anchor='middle') {{steps}} Steps / {{delta}} msec
+                    if sDelta
+                        text(y='24%' x='50%' text-anchor='middle') Record: {{sDelta}}
+            else
+                +intro

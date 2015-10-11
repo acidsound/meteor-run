@@ -1,0 +1,71 @@
+.splash-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: RGBA(0, 0, 0, 0.9);
+  z-index: 50;
+  padding: 1rem;
+  text-align: center;
+  opacity: 1;
+  transition: 1s opacity;
+}
+
+.splash-container.fade-out {
+  opacity: 0;
+}
+
+.splash-container .inner {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+}
+
+.splash-container h1 {
+  display: block;
+  margin: 0;
+  color: white;
+  font-size: 3rem;
+
+}
+
+.splash-container p {
+  color: white;
+}
+
+.splash-container button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 1rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  border-radius: 6px;
+  box-shadow: none;
+  border: 0;
+  padding: 0.5rem 2rem;
+  color: white;
+  background: indianred;
+  letter-spacing: 0.2rem;
+  outline: 0;
+}
+
+.splash-container .fixed-bottom {
+  position: fixed;
+  bottom: 1rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: RGBA(255, 255, 255, 0.8);
+  z-index: 51;
+  font-weight: 200;
+  span {
+    font-size: 0.8rem;
+  }
+  span:not(.number) {
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+  }
+}

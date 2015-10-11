@@ -1,0 +1,29 @@
+template(name="introd")
+   g.status
+      with user
+         text(y='15%' x='50%' text-anchor='middle') Welcome {{username}}
+         text(y='24%' x='50%' text-anchor='middle') Tap the bottom
+         text(y='33%' x='50%' text-anchor='middle') black tiles to run!
+   g.leaderboards
+      each leaderboards
+         text(y='{{y}}%' x='50%' text-anchor='middle') {{idx}}. {{username}} {{steps}} step, {{speed}}s/s
+
+template(name="intro")
+   div.leaderboards.show
+      p Tap anywhere to start
+      img(src="/img/leaderboard.svg")
+      //- with user
+        div.middle Welcome
+         span {{username}}
+      ul.rank-list
+         each leaderboards
+            //- div.middle {{idx}}. {{username}} {{steps}} step, {{speed}}s/s
+            li.rank
+               .idx {{idx}}
+               .info
+                  span.username  {{username}}
+                  span.step {{steps}}
+                     span steps
+      .back
+
+      //- div.tap-to-start Tap to start!

@@ -1,0 +1,335 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+/**
+ * Border Box Sizing
+ */
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+
+// --------------------------------------------------
+// Flexbox LESS mixins
+// The spec: http://www.w3.org/TR/css3-flexbox
+// --------------------------------------------------
+
+// Flexbox display
+// flex or inline-flex
+.flex-display(@display: flex) {
+  display: ~"-webkit-@{display}";
+  display: ~"-moz-@{display}";
+  display: ~"-ms-@{display}box"; // IE10 uses -ms-flexbox
+  display: ~"-ms-@{display}"; // IE11
+  display: @display;
+}
+
+// The 'flex' shorthand
+// - applies to: flex items
+// <positive-number>, initial, auto, or none
+.flex(@columns: initial) {
+  -webkit-flex: @columns;
+  -moz-flex: @columns;
+  -ms-flex: @columns;
+  flex: @columns;
+}
+
+// Flex Flow Direction
+// - applies to: flex containers
+// row | row-reverse | column | column-reverse
+.flex-direction(@direction: row) {
+  -webkit-flex-direction: @direction;
+  -moz-flex-direction: @direction;
+  -ms-flex-direction: @direction;
+  flex-direction: @direction;
+}
+
+// Flex Line Wrapping
+// - applies to: flex containers
+// nowrap | wrap | wrap-reverse
+.flex-wrap(@wrap: nowrap) {
+  -webkit-flex-wrap: @wrap;
+  -moz-flex-wrap: @wrap;
+  -ms-flex-wrap: @wrap;
+  flex-wrap: @wrap;
+}
+
+// Flex Direction and Wrap
+// - applies to: flex containers
+// <flex-direction> || <flex-wrap>
+.flex-flow(@flow) {
+  -webkit-flex-flow: @flow;
+  -moz-flex-flow: @flow;
+  -ms-flex-flow: @flow;
+  flex-flow: @flow;
+}
+
+// Display Order
+// - applies to: flex items
+// <integer>
+.flex-order(@order: 0) {
+  -webkit-order: @order;
+  -moz-order: @order;
+  -ms-order: @order;
+  order: @order;
+}
+
+// Flex grow factor
+// - applies to: flex items
+// <number>
+.flex-grow(@grow: 0) {
+  -webkit-flex-grow: @grow;
+  -moz-flex-grow: @grow;
+  -ms-flex-grow: @grow;
+  flex-grow: @grow;
+}
+
+// Flex shrink
+// - applies to: flex item shrink factor
+// <number>
+.flex-shrink(@shrink: 1) {
+  -webkit-flex-shrink: @shrink;
+  -moz-flex-shrink: @shrink;
+  -ms-flex-shrink: @shrink;
+  flex-shrink: @shrink;
+}
+
+// Flex basis
+// - the initial main size of the flex item
+// - applies to: flex itemsnitial main size of the flex item
+// <width>
+.flex-basis(@width: auto) {
+  -webkit-flex-basis: @width;
+  -moz-flex-basis: @width;
+  -ms-flex-basis: @width;
+  flex-basis: @width;
+}
+
+// Axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | space-between | space-around
+.justify-content(@justify: flex-start) {
+  -webkit-justify-content: @justify;
+  -moz-justify-content: @justify;
+  -ms-justify-content: @justify;
+  justify-content: @justify;
+}
+
+// Packing Flex Lines
+// - applies to: multi-line flex containers
+// flex-start | flex-end | center | space-between | space-around | stretch
+.align-content(@align: stretch) {
+  -webkit-align-content: @align;
+  -moz-align-content: @align;
+  -ms-align-content: @align;
+  align-content: @align;
+}
+
+// Cross-axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | baseline | stretch
+.align-items(@align: stretch) {
+  -webkit-align-items: @align;
+  -moz-align-items: @align;
+  -ms-align-items: @align;
+  align-items: @align;
+}
+
+// Cross-axis Alignment
+// - applies to: flex items
+// auto | flex-start | flex-end | center | baseline | stretch
+.align-self(@align: auto) {
+  -webkit-align-self: @align;
+  -moz-align-self: @align;
+  -ms-align-self: @align;
+  align-self: @align;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+  -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
+}
+
+html, body {
+  font-family: 'Noto Sans', sans-serif;
+
+  height: 100%;
+  margin: 0;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  // outline: solid 1px #ddd;
+  border: solid 1px RGBA(0, 0, 0, 0.05);
+}
+
+/* svg version */
+html, body {
+  height: 100vh;
+  margin: 0;
+}
+.container::after {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 0% ,rgba(255,255,255,0) 100%);
+  z-index: 1;
+
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  // transform: perspective(300px) rotateX(45deg) scaleX(0.8) scaleY(1.3) translateY(-15%);
+  .row {
+    // .flex-display(flex);
+    position: relative;
+    margin-top: -20vh;
+    height: 20vh;
+    transform: translateY(0);
+    &.move {
+      transform: translateY(20vh);
+      transition: 150ms transform;
+    }
+    .cell {
+      // outline: solid 1px black;
+      float: left;
+
+
+      border: solid 1px RGBA(0, 0, 0, 0.05);
+      width: 25vw;
+      height: 20vh;
+
+      &.white {
+        background-color: white;
+      }
+      &.black {
+        background-color: black;
+      }
+      &.base {
+        background-color: indianred;
+      }
+      &.die {
+        // background-color: indianred;
+        background-color: RGBA(0, 0, 0, 0.2);
+      }
+    }
+  }
+  // .status {
+  //   pointer-events: none;
+  //   position: absolute;
+  //   width: 100vw;
+  //   top: 8vh;
+  //   font-size: 1.5rem;
+  //   // text-shadow: 0 1px 0 #ccc,
+  //   //   0 2px 0 #c9c9c9,
+  //   //   0 3px 0 #bbb,
+  //   //   0 4px 0 #b9b9b9,
+  //   //   0 5px 0 #aaa,
+  //   //   0 6px 1px rgba(0,0,0,.1),
+  //   //   0 0 5px rgba(0,0,0,.1),
+  //   //   0 1px 3px rgba(0,0,0,.3),
+  //   //   0 3px 5px rgba(0,0,0,.2),
+  //   //   0 5px 10px rgba(0,0,0,.25),
+  //   //   0 10px 10px rgba(0,0,0,.2),
+  //   //   0 20px 20px rgba(0,0,0,.15);
+  //   color: #de7e62;
+  //   .leaderboards {
+  //     font-size: 1.2rem;
+  //   }
+  //   .middle {
+  //     width: 100vw;
+  //     text-align: center;
+  //   }
+  // }
+}
+
+svg {
+  width: 100vw;
+  height: 100vh;
+  .container {
+    .row {
+      .cell {
+        fill: white;
+        stroke: black;
+        width: 25vw;
+        height: 20vh;
+        &.white {
+          fill: white;
+        }
+        &.black {
+          fill: black;
+        }
+        &.base {
+          fill: yellow;
+        }
+        &.die {
+          fill: indianred;
+        }
+      }
+      .cols(@y) {
+        .cell(@x) {
+          &:nth-child(@{x}) {
+            /* nth-child needs {} */
+            transform: translate3d((@x+-1)*100%, @y, 0);
+            -webkit-transform: translate3d((@x+-1)*100%, @y, 0);
+          }
+        }
+        .cell(1);
+        .cell(2);
+        .cell(3);
+        .cell(4);
+      }
+      .rows(@y) {
+        &:nth-child(@{y}) > .cell {
+          .cols((@y+-1)*100%); /* what da fuxx, '@y-1' doesn't works*/
+        }
+      }
+      .rows(1);
+      .rows(2);
+      .rows(3);
+      .rows(4);
+      .rows(5);
+    }
+  }
+  .status {
+    text {
+      text-shadow: none;
+      font-size: 2.2rem;
+      font-family: sans-serif;
+      stroke: #feae82;
+      stroke-width: 2px;
+      fill: #fff;
+    }
+  }
+  .leaderboards {
+    text {
+      text-shadow: none;
+      font-size: 1.5rem;
+      font-family: sans-serif;
+      stroke: #feae82;
+      stroke-width: 1px;
+      fill: #fff;
+    }
+  }
+}

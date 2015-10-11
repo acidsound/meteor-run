@@ -1,0 +1,98 @@
+
+.modal {
+  position: fixed;
+  // display: none;
+  visibility: hidden;
+  pointer-events: none;
+  top: 0%;
+  left: 50%;
+  width: 300px;
+  height: auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 6px;
+  z-index: 20;
+  content: "";
+  opacity: 0;
+  transform: translateX(-50%) translateY(-100%) scale(0.8);
+  transition: 200ms all;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+/* Map Name */
+.modal h4 {
+  margin-bottom: 0;
+  margin-top: 0;
+  /*font-size: 1.5rem;*/
+}
+
+.modal .inner {
+  display: block;
+  margin: 0 auto;
+  // margin-top: 1rem;
+  border-radius: 6px;
+  padding: 1rem;
+  background: RGBA(0, 0, 0, 0.1);
+  max-width: 50%;
+}
+
+/* Tile */
+.modal h1 {
+  display: block;
+  /*margin-top: 1rem;*/
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+/* Player Name */
+.modal p.player-name {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.modal button.close {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: indianred;
+  color: white;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  box-shadow: none;
+  outline: 0;
+  border: 0;
+}
+
+.modal p.rank {
+
+}
+
+.modal.modal-show {
+  display: block;
+  transform: translateX(-50%) translateY(0) scale(1);
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.overlay {
+  display: none;
+}
+
+.modal-show + .overlay {
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: RGBA(0, 0, 0, 0.5);
+  z-index: 10;
+}
