@@ -69,7 +69,7 @@ Template.stage.helpers
       Meteor.call 'getServerTime', (err, result)=>
         t.beginTime = result
     t.currentTime = +new Date() if t.prevTime > 0
-      steps
+    steps
 
   isReady: ->
     Template.instance().steps.get() > 0 and Meteor.userId()
