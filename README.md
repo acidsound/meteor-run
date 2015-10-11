@@ -5,7 +5,10 @@ Run game with meteor for Meteor 2015 Global distributed Hackathon
 Don't Tap white tile.
 
 ## What it does
-Tap White Tile 
+Tap the White Tile. Just kidding.
+Tap the black tiles and get furthest to win.
+The gray tiles are where you or other people have died.
+Play with your friends and see the die in real-time!
 
 ## How we built it
 We decided with Meteor's reactiveness, we could re-create the famous mobile game Don't Tap White Tile, 
